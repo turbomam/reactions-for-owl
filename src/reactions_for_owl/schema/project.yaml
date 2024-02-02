@@ -48,6 +48,7 @@ classes:
         inlined: true
 
 slots:
+  id:
   primary_email:
     slot_uri: schema:email
     description: The main email address of a person

@@ -1,9 +1,9 @@
 # Auto generated from reactions_for_owl.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-02-01T21:25:16
+# Generation date: 2024-02-01T22:38:49
 # Schema: reactions-for-owl
 #
 # id: https://w3id.org/turbomam/reactions-for-owl
-# description: Iterative, OWL-friendly model of proeolytic reactions
+# description: Iterative, OWL-friendly model of proteolytic reactions
 # license: MIT
 
 import dataclasses
@@ -49,6 +49,26 @@ class NamedThingId(URIorCURIE):
 
 class PersonId(NamedThingId):
     pass
+
+
+@dataclass
+class PersonCollection(YAMLRoot):
+    """
+    A holder for Person objects
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL["PersonCollection"]
+    class_class_curie: ClassVar[str] = "reactions_for_owl:PersonCollection"
+    class_name: ClassVar[str] = "PersonCollection"
+    class_model_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL.PersonCollection
+
+    entries: Optional[Union[Dict[Union[str, PersonId], Union[dict, Person]], List[Union[dict, Person]]]] = empty_dict()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        self._normalize_inlined_as_dict(slot_name="entries", slot_type=Person, key_name="id", keyed=True)
+
+        super().__post_init__(**kwargs)
 
 
 @dataclass
@@ -121,26 +141,6 @@ class Person(NamedThing):
         super().__post_init__(**kwargs)
 
 
-@dataclass
-class PersonCollection(YAMLRoot):
-    """
-    A holder for Person objects
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL["PersonCollection"]
-    class_class_curie: ClassVar[str] = "reactions_for_owl:PersonCollection"
-    class_name: ClassVar[str] = "PersonCollection"
-    class_model_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL.PersonCollection
-
-    entries: Optional[Union[Dict[Union[str, PersonId], Union[dict, Person]], List[Union[dict, Person]]]] = empty_dict()
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        self._normalize_inlined_as_dict(slot_name="entries", slot_type=Person, key_name="id", keyed=True)
-
-        super().__post_init__(**kwargs)
-
-
 # Enumerations
 class PersonStatus(EnumDefinitionImpl):
 
@@ -164,15 +164,6 @@ class PersonStatus(EnumDefinitionImpl):
 class slots:
     pass
 
-slots.id = Slot(uri=SCHEMA.identifier, name="id", curie=SCHEMA.curie('identifier'),
-                   model_uri=REACTIONS_FOR_OWL.id, domain=None, range=URIRef)
-
-slots.name = Slot(uri=SCHEMA.name, name="name", curie=SCHEMA.curie('name'),
-                   model_uri=REACTIONS_FOR_OWL.name, domain=None, range=Optional[str])
-
-slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEMA.curie('description'),
-                   model_uri=REACTIONS_FOR_OWL.description, domain=None, range=Optional[str])
-
 slots.primary_email = Slot(uri=SCHEMA.email, name="primary_email", curie=SCHEMA.curie('email'),
                    model_uri=REACTIONS_FOR_OWL.primary_email, domain=None, range=Optional[str])
 
@@ -184,6 +175,15 @@ slots.age_in_years = Slot(uri=REACTIONS_FOR_OWL.age_in_years, name="age_in_years
 
 slots.vital_status = Slot(uri=REACTIONS_FOR_OWL.vital_status, name="vital_status", curie=REACTIONS_FOR_OWL.curie('vital_status'),
                    model_uri=REACTIONS_FOR_OWL.vital_status, domain=None, range=Optional[Union[str, "PersonStatus"]])
+
+slots.id = Slot(uri=SCHEMA.identifier, name="id", curie=SCHEMA.curie('identifier'),
+                   model_uri=REACTIONS_FOR_OWL.id, domain=None, range=URIRef)
+
+slots.name = Slot(uri=SCHEMA.name, name="name", curie=SCHEMA.curie('name'),
+                   model_uri=REACTIONS_FOR_OWL.name, domain=None, range=Optional[str])
+
+slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEMA.curie('description'),
+                   model_uri=REACTIONS_FOR_OWL.description, domain=None, range=Optional[str])
 
 slots.personCollection__entries = Slot(uri=REACTIONS_FOR_OWL.entries, name="personCollection__entries", curie=REACTIONS_FOR_OWL.curie('entries'),
                    model_uri=REACTIONS_FOR_OWL.personCollection__entries, domain=None, range=Optional[Union[Dict[Union[str, PersonId], Union[dict, Person]], List[Union[dict, Person]]]])

@@ -1,0 +1,36 @@
+---
+id: https://w3id.org/turbomam/core
+name: proteolytic-reactions-owl-core
+title: proteolytic reactions owl core
+description: |-
+  Core nmdc-schema-like classes for an OWL-friendly model of proteolytic reactions
+license: MIT
+see_also:
+  - https://turbomam.github.io/reactions-for-owl
+
+prefixes:
+  reactions_for_owl: https://w3id.org/turbomam/reactions-for-owl/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/
+  schema: http://schema.org/
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  example: https://example.org/
+default_prefix: reactions_for_owl
+default_range: string
+
+imports:
+  - linkml:types
+  - basic_slots
+
+classes:
+
+  NamedThing:
+    description: >-
+      A generic grouping for any identifiable entity
+    slots:
+      - id
+      - name
+      - description
+    class_uri: schema:Thing
+
+
