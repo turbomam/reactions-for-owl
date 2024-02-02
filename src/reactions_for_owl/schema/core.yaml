@@ -19,6 +19,7 @@ default_range: string
 imports:
   - linkml:types
   - basic_slots
+  - qualified_identifier
 
 classes:
 
@@ -27,6 +28,7 @@ classes:
       A generic grouping for any identifiable entity
     slots:
       - id
+      - has_qualified_identifiers
       - name
       - description
     class_uri: schema:Thing

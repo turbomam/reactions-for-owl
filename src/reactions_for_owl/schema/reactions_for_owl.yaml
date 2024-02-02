@@ -23,3 +23,4 @@ imports:
   - basic_slots
   - core
   - project
+  - qualified_identifier
