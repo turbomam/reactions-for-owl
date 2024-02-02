@@ -1,0 +1,61 @@
+---
+id: https://w3id.org/turbomam/core
+name: proteolytic-reactions-owl-core
+title: proteolytic reactions owl core
+description: |-
+  Core nmdc-schema-like classes for an OWL-friendly model of proteolytic reactions
+license: MIT
+see_also:
+  - https://turbomam.github.io/reactions-for-owl
+
+prefixes:
+  reactions_for_owl: https://w3id.org/turbomam/reactions-for-owl/
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  example: https://example.org/
+default_prefix: reactions_for_owl
+default_range: string
+
+imports:
+  - linkml:types
+  - basic_slots
+
+classes:
+
+  NamedThing:
+    description: >-
+      A generic grouping for any identifiable entity
+    slots:
+      - id
+      - name
+      - description
+    class_uri: schema:Thing
+
+  Person:
+    is_a: NamedThing
+    description: >-
+      Represents a Person
+    slots:
+      - primary_email
+      - birth_date
+      - age_in_years
+      - vital_status
+    slot_usage:
+      primary_email:
+        pattern: "^\\S+@[\\S+\\.]+\\S+"
+
+slots:
+  primary_email:
+    slot_uri: schema:email
+    description: The main email address of a person
+  birth_date:
+    slot_uri: schema:birthDate
+    range: date
+    description: Date on which a person is born
+  age_in_years:
+    range: integer
+    description: Number of years since birth
+  vital_status:
+    range: PersonStatus
+    description: living or dead status
+

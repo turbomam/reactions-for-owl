@@ -1,0 +1,49 @@
+---
+id: https://w3id.org/turbomam/reactions-for-owl-project
+name: reactions-for-owl-project
+title: reactions for owl project
+description: |-
+  Project module for a OWL-friendly model of proteolytic reactions
+license: MIT
+see_also:
+  - https://turbomam.github.io/reactions-for-owl
+
+prefixes:
+  reactions_for_owl: https://w3id.org/turbomam/reactions-for-owl/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/
+  schema: http://schema.org/
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  example: https://example.org/
+default_prefix: reactions_for_owl
+default_range: string
+
+imports:
+  - linkml:types
+  - core
+
+classes:
+
+  PersonCollection:
+    tree_root: true
+    description: >-
+      A holder for Person objects
+    attributes:
+      entries:
+        range: Person
+        multivalued: true
+        inlined: true
+
+enums:
+  PersonStatus:
+    permissible_values:
+      ALIVE:
+        description: the person is living
+        meaning: PATO:0001421
+      DEAD:
+        description: the person is deceased
+        meaning: PATO:0001422
+      UNKNOWN:
+        description: the vital status is not known
+        todos:
+          - map this to an ontology

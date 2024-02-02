@@ -1,9 +1,9 @@
 # Auto generated from reactions_for_owl.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-02-01T21:25:16
+# Generation date: 2024-02-01T22:56:32
 # Schema: reactions-for-owl
 #
 # id: https://w3id.org/turbomam/reactions-for-owl
-# description: Iterative, OWL-friendly model of proeolytic reactions
+# description: Iterative, OWL-friendly model of proteolytic reactions
 # license: MIT
 
 import dataclasses
