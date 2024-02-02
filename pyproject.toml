@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "reactions_for_owl"
 version = "0.1.0"
-description = "Iterative, OWL-friendly model of proeolytic reactions"
+description = "Iterative, OWL-friendly model of proteolytic reactions"
 authors = ["Mark Andrew Miller <MAM@lbl.gov>"]
 license = "MIT"
 readme = "README.md"

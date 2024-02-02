@@ -3,7 +3,7 @@ id: https://w3id.org/turbomam/reactions-for-owl
 name: reactions-for-owl
 title: reactions-for-owl
 description: |-
-  Iterative, OWL-friendly model of proeolytic reactions
+  Iterative, OWL-friendly model of proteolytic reactions
 license: MIT
 see_also:
   - https://turbomam.github.io/reactions-for-owl
