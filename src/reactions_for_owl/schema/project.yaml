@@ -33,6 +33,7 @@ classes:
         range: Person
         multivalued: true
         inlined: true
+        inlined_as_list: true
 
 enums:
   PersonStatus:

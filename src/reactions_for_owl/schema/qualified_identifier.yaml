@@ -1,0 +1,63 @@
+---
+id: https://w3id.org/turbomam/qualified_identifier
+name: proteolytic-reactions-owl-qualified_identifier
+title: proteolytic reactions owl qualified identifiers
+description: |-
+  Qualified identifiers for an OWL-friendly model of proteolytic reactions. Supports assertions about an identifiers' provenance and certainty.
+license: MIT
+see_also:
+  - https://turbomam.github.io/reactions-for-owl
+
+prefixes:
+  reactions_for_owl: https://w3id.org/turbomam/reactions-for-owl/
+  linkml: https://w3id.org/linkml/
+  example: https://example.org/
+default_prefix: reactions_for_owl
+default_range: string
+
+imports:
+  - linkml:types
+
+classes:
+  QualifiedIdentifier:
+    description: >-
+      A non-NMDC identifier for something that is also present in the NMDC database.
+      Provides support for saying when the identifier was asserted and assessments about
+      the quality of the identifier.
+    slots:
+      - external_identifier_value
+      - provenance
+      - assertion_date
+    class_uri: linkml:QualifiedIdentifier
+
+slots:
+  external_identifier_value:
+    description: This is the value of the identifier used in some external system
+    range: uriorcurie
+    comments:
+      - Using a uriorcurie range ensures that we can consistently and atomically
+        assert the source of the mapping and the local identifier (without requiring
+        even more classes).
+      - Using a uriorcurie range does require that we define prefixes for all
+        external systems that we might map to. Prefixes from an external system
+        like are strongly preferred. Ideally the CURIes expand to a resolvable
+        URL, but this is not required.
+      - using curie as the range leads to "WARNING:root:UNKNOWN: Curie // <class 'linkml_runtime.utils.yamlutils.extended_str'>" when building the project... maybe from gen-owl?
+  provenance:
+    range: string
+    description: >-
+      comments about whether the mapping is 1:1 (from NMDC to the external system),
+      many:1, 1:many, or many:many.
+      - would we ever assert a many:many mapping?
+      - use an enumeration and add some other comment-like string field?
+  assertion_date:
+    range: string
+    description: >-
+      A string representation of an ISO-8601 data when the mapping was asserted.
+    comments: provide a pattern? see if date/time objects work in LinkML now?
+  has_qualified_identifiers:
+    range: QualifiedIdentifier
+    multivalued: true
+    description: >-
+      A link from any (NamedTing?) in the NMDC database to an external identifier
+      This would replace alternative identifiers, related identifiers, etc.

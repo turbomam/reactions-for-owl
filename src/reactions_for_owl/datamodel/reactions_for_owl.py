@@ -1,5 +1,5 @@
 # Auto generated from reactions_for_owl.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-02-01T22:56:32
+# Generation date: 2024-02-02T10:37:41
 # Schema: reactions-for-owl
 #
 # id: https://w3id.org/turbomam/reactions-for-owl
@@ -64,6 +64,7 @@ class NamedThing(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL.NamedThing
 
     id: Union[str, NamedThingId] = None
+    has_qualified_identifiers: Optional[Union[Union[dict, "QualifiedIdentifier"], List[Union[dict, "QualifiedIdentifier"]]]] = empty_list()
     name: Optional[str] = None
     description: Optional[str] = None
 
@@ -72,6 +73,10 @@ class NamedThing(YAMLRoot):
             self.MissingRequiredField("id")
         if not isinstance(self.id, NamedThingId):
             self.id = NamedThingId(self.id)
+
+        if not isinstance(self.has_qualified_identifiers, list):
+            self.has_qualified_identifiers = [self.has_qualified_identifiers] if self.has_qualified_identifiers is not None else []
+        self.has_qualified_identifiers = [v if isinstance(v, QualifiedIdentifier) else QualifiedIdentifier(**as_dict(v)) for v in self.has_qualified_identifiers]
 
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
@@ -136,7 +141,37 @@ class PersonCollection(YAMLRoot):
     entries: Optional[Union[Dict[Union[str, PersonId], Union[dict, Person]], List[Union[dict, Person]]]] = empty_dict()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        self._normalize_inlined_as_dict(slot_name="entries", slot_type=Person, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="entries", slot_type=Person, key_name="id", keyed=True)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class QualifiedIdentifier(YAMLRoot):
+    """
+    A non-NMDC identifier for something that is also present in the NMDC database. Provides support for saying when
+    the identifier was asserted and assessments about the quality of the identifier.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = LINKML["QualifiedIdentifier"]
+    class_class_curie: ClassVar[str] = "linkml:QualifiedIdentifier"
+    class_name: ClassVar[str] = "QualifiedIdentifier"
+    class_model_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL.QualifiedIdentifier
+
+    external_identifier_value: Optional[Union[str, URIorCURIE]] = None
+    provenance: Optional[str] = None
+    assertion_date: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.external_identifier_value is not None and not isinstance(self.external_identifier_value, URIorCURIE):
+            self.external_identifier_value = URIorCURIE(self.external_identifier_value)
+
+        if self.provenance is not None and not isinstance(self.provenance, str):
+            self.provenance = str(self.provenance)
+
+        if self.assertion_date is not None and not isinstance(self.assertion_date, str):
+            self.assertion_date = str(self.assertion_date)
 
         super().__post_init__(**kwargs)
 
@@ -184,6 +219,18 @@ slots.age_in_years = Slot(uri=REACTIONS_FOR_OWL.age_in_years, name="age_in_years
 
 slots.vital_status = Slot(uri=REACTIONS_FOR_OWL.vital_status, name="vital_status", curie=REACTIONS_FOR_OWL.curie('vital_status'),
                    model_uri=REACTIONS_FOR_OWL.vital_status, domain=None, range=Optional[Union[str, "PersonStatus"]])
+
+slots.external_identifier_value = Slot(uri=REACTIONS_FOR_OWL.external_identifier_value, name="external_identifier_value", curie=REACTIONS_FOR_OWL.curie('external_identifier_value'),
+                   model_uri=REACTIONS_FOR_OWL.external_identifier_value, domain=None, range=Optional[Union[str, URIorCURIE]])
+
+slots.provenance = Slot(uri=REACTIONS_FOR_OWL.provenance, name="provenance", curie=REACTIONS_FOR_OWL.curie('provenance'),
+                   model_uri=REACTIONS_FOR_OWL.provenance, domain=None, range=Optional[str])
+
+slots.assertion_date = Slot(uri=REACTIONS_FOR_OWL.assertion_date, name="assertion_date", curie=REACTIONS_FOR_OWL.curie('assertion_date'),
+                   model_uri=REACTIONS_FOR_OWL.assertion_date, domain=None, range=Optional[str])
+
+slots.has_qualified_identifiers = Slot(uri=REACTIONS_FOR_OWL.has_qualified_identifiers, name="has_qualified_identifiers", curie=REACTIONS_FOR_OWL.curie('has_qualified_identifiers'),
+                   model_uri=REACTIONS_FOR_OWL.has_qualified_identifiers, domain=None, range=Optional[Union[Union[dict, QualifiedIdentifier], List[Union[dict, QualifiedIdentifier]]]])
 
 slots.personCollection__entries = Slot(uri=REACTIONS_FOR_OWL.entries, name="personCollection__entries", curie=REACTIONS_FOR_OWL.curie('entries'),
                    model_uri=REACTIONS_FOR_OWL.personCollection__entries, domain=None, range=Optional[Union[Dict[Union[str, PersonId], Union[dict, Person]], List[Union[dict, Person]]]])
