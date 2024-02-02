@@ -96,6 +96,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://turbomam.github.io/reactions-for-owl/QualifiedIdentifier/</loc>
+         <lastmod>2024-02-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://turbomam.github.io/reactions-for-owl/Sparqlpath/</loc>
          <lastmod>2024-02-02</lastmod>
          <changefreq>daily</changefreq>
@@ -131,6 +136,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://turbomam.github.io/reactions-for-owl/assertion_date/</loc>
+         <lastmod>2024-02-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://turbomam.github.io/reactions-for-owl/birth_date/</loc>
          <lastmod>2024-02-02</lastmod>
          <changefreq>daily</changefreq>
@@ -146,6 +156,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://turbomam.github.io/reactions-for-owl/external_identifier_value/</loc>
+         <lastmod>2024-02-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://turbomam.github.io/reactions-for-owl/has_qualified_identifiers/</loc>
+         <lastmod>2024-02-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://turbomam.github.io/reactions-for-owl/id/</loc>
          <lastmod>2024-02-02</lastmod>
          <changefreq>daily</changefreq>
@@ -157,6 +177,11 @@
     </url>
     <url>
          <loc>https://turbomam.github.io/reactions-for-owl/primary_email/</loc>
+         <lastmod>2024-02-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://turbomam.github.io/reactions-for-owl/provenance/</loc>
          <lastmod>2024-02-02</lastmod>
          <changefreq>daily</changefreq>
     </url>

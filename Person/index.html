@@ -217,6 +217,10 @@
 
       Person : description
 
+      Person : has_qualified_identifiers
+
+          Person --&gt; QualifiedIdentifier : has_qualified_identifiers
+
       Person : id
 
       Person : name
@@ -275,6 +279,12 @@
 <td><a href="../id/">id</a></td>
 <td>1..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
 <td>A unique identifier for a thing</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
+</tr>
+<tr>
+<td><a href="../has_qualified_identifiers/">has_qualified_identifiers</a></td>
+<td>0..* <br/> <a href="../QualifiedIdentifier/">QualifiedIdentifier</a></td>
+<td>A link from any (NamedTing?) in the NMDC database to an external identifier T...</td>
 <td><a href="../NamedThing/">NamedThing</a></td>
 </tr>
 <tr>
@@ -425,6 +435,19 @@ attributes:
     - NamedThing
     range: uriorcurie
     required: true
+  has_qualified_identifiers:
+    name: has_qualified_identifiers
+    description: A link from any (NamedTing?) in the NMDC database to an external
+      identifier This would replace alternative identifiers, related identifiers,
+      etc.
+    from_schema: https://w3id.org/turbomam/reactions-for-owl
+    rank: 1000
+    multivalued: true
+    alias: has_qualified_identifiers
+    owner: Person
+    domain_of:
+    - NamedThing
+    range: QualifiedIdentifier
   name:
     name: name
     description: A human-readable name for a thing

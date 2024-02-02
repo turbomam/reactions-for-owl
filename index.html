@@ -404,6 +404,10 @@
 <td><a href="PersonCollection/">PersonCollection</a></td>
 <td>A holder for Person objects</td>
 </tr>
+<tr>
+<td><a href="QualifiedIdentifier/">QualifiedIdentifier</a></td>
+<td>A non-NMDC identifier for something that is also present in the NMDC database. Provides support for saying when the identifier was asserted and assessments about the quality of the identifier.</td>
+</tr>
 </tbody>
 </table>
 <h2 id="slots">Slots</h2>
@@ -420,6 +424,10 @@
 <td>Number of years since birth</td>
 </tr>
 <tr>
+<td><a href="assertion_date/">assertion_date</a></td>
+<td>A string representation of an ISO-8601 data when the mapping was asserted</td>
+</tr>
+<tr>
 <td><a href="birth_date/">birth_date</a></td>
 <td>Date on which a person is born</td>
 </tr>
@@ -432,6 +440,14 @@
 <td></td>
 </tr>
 <tr>
+<td><a href="external_identifier_value/">external_identifier_value</a></td>
+<td>This is the value of the identifier used in some external system</td>
+</tr>
+<tr>
+<td><a href="has_qualified_identifiers/">has_qualified_identifiers</a></td>
+<td>A link from any (NamedTing?) in the NMDC database to an external identifier T...</td>
+</tr>
+<tr>
 <td><a href="id/">id</a></td>
 <td>A unique identifier for a thing</td>
 </tr>
@@ -442,6 +458,10 @@
 <tr>
 <td><a href="primary_email/">primary_email</a></td>
 <td>The main email address of a person</td>
+</tr>
+<tr>
+<td><a href="provenance/">provenance</a></td>
+<td>comments about whether the mapping is 1:1 (from NMDC to the external system),...</td>
 </tr>
 <tr>
 <td><a href="vital_status/">vital_status</a></td>

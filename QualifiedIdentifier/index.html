@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://turbomam.github.io/reactions-for-owl/NamedThing/" rel="canonical"/>
+<link href="https://turbomam.github.io/reactions-for-owl/QualifiedIdentifier/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.5.3, mkdocs-material-8.5.10" name="generator"/>
-<title>Class: NamedThing - reactions-for-owl</title>
+<title>Class: QualifiedIdentifier - reactions-for-owl</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -21,7 +21,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-namedthing">
+<a class="md-skip" href="#class-qualifiedidentifier">
           Skip to content
         </a>
 </div>
@@ -45,7 +45,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: NamedThing
+              Class: QualifiedIdentifier
             
           </span>
 </div>
@@ -142,13 +142,13 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#inheritance">
-    Inheritance
+<a class="md-nav__link" href="#slots">
+    Slots
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#slots">
-    Slots
+<a class="md-nav__link" href="#usages">
+    Usages
   </a>
 </li>
 <li class="md-nav__item">
@@ -196,35 +196,23 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/turbomam/reactions-for-owl/edit/master/docs/NamedThing.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/turbomam/reactions-for-owl/edit/master/docs/QualifiedIdentifier.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="class-namedthing">Class: NamedThing</h1>
-<p><em>A generic grouping for any identifiable entity</em></p>
-<p>URI: <a href="http://schema.org/Thing">schema:Thing</a></p>
+<h1 id="class-qualifiedidentifier">Class: QualifiedIdentifier</h1>
+<p><em>A non-NMDC identifier for something that is also present in the NMDC database. Provides support for saying when the identifier was asserted and assessments about the quality of the identifier.</em></p>
+<p>URI: <a href="https://w3id.org/linkml/QualifiedIdentifier">linkml:QualifiedIdentifier</a></p>
 <div class="mermaid"> classDiagram
-    class NamedThing
-      NamedThing &lt;|-- Person
+    class QualifiedIdentifier
+      QualifiedIdentifier : assertion_date
 
-      NamedThing : description
+      QualifiedIdentifier : external_identifier_value
 
-      NamedThing : has_qualified_identifiers
-
-          NamedThing --&gt; QualifiedIdentifier : has_qualified_identifiers
-
-      NamedThing : id
-
-      NamedThing : name
+      QualifiedIdentifier : provenance
 
 
 </div>
-<h2 id="inheritance">Inheritance</h2>
-<ul>
-<li><strong>NamedThing</strong><ul>
-<li><a href="../Person/">Person</a></li>
-</ul>
-</li>
-</ul>
+<!-- no inheritance hierarchy -->
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -237,28 +225,47 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../id/">id</a></td>
-<td>1..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>A unique identifier for a thing</td>
+<td><a href="../external_identifier_value/">external_identifier_value</a></td>
+<td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>This is the value of the identifier used in some external system</td>
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="../provenance/">provenance</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>comments about whether the mapping is 1:1 (from NMDC to the external system),...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../assertion_date/">assertion_date</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>A string representation of an ISO-8601 data when the mapping was asserted</td>
+<td>direct</td>
+</tr>
+</tbody>
+</table>
+<h2 id="usages">Usages</h2>
+<table>
+<thead>
+<tr>
+<th>used by</th>
+<th>used in</th>
+<th>type</th>
+<th>used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../NamedThing/">NamedThing</a></td>
 <td><a href="../has_qualified_identifiers/">has_qualified_identifiers</a></td>
-<td>0..* <br/> <a href="../QualifiedIdentifier/">QualifiedIdentifier</a></td>
-<td>A link from any (NamedTing?) in the NMDC database to an external identifier T...</td>
-<td>direct</td>
+<td>range</td>
+<td><a href="./">QualifiedIdentifier</a></td>
 </tr>
 <tr>
-<td><a href="../name/">name</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>A human-readable name for a thing</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../description/">description</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>A human-readable description for a thing</td>
-<td>direct</td>
+<td><a href="../Person/">Person</a></td>
+<td><a href="../has_qualified_identifiers/">has_qualified_identifiers</a></td>
+<td>range</td>
+<td><a href="./">QualifiedIdentifier</a></td>
 </tr>
 </tbody>
 </table>
@@ -278,11 +285,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>schema:Thing</td>
+<td>linkml:QualifiedIdentifier</td>
 </tr>
 <tr>
 <td>native</td>
-<td>reactions_for_owl:NamedThing</td>
+<td>reactions_for_owl:QualifiedIdentifier</td>
 </tr>
 </tbody>
 </table>
@@ -290,73 +297,73 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: NamedThing
-description: A generic grouping for any identifiable entity
+<pre><code class="language-yaml">name: QualifiedIdentifier
+description: A non-NMDC identifier for something that is also present in the NMDC
+  database. Provides support for saying when the identifier was asserted and assessments
+  about the quality of the identifier.
 from_schema: https://w3id.org/turbomam/reactions-for-owl
 slots:
-- id
-- has_qualified_identifiers
-- name
-- description
-class_uri: schema:Thing
+- external_identifier_value
+- provenance
+- assertion_date
+class_uri: linkml:QualifiedIdentifier
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: NamedThing
-description: A generic grouping for any identifiable entity
+<pre><code class="language-yaml">name: QualifiedIdentifier
+description: A non-NMDC identifier for something that is also present in the NMDC
+  database. Provides support for saying when the identifier was asserted and assessments
+  about the quality of the identifier.
 from_schema: https://w3id.org/turbomam/reactions-for-owl
 attributes:
-  id:
-    name: id
-    description: A unique identifier for a thing
+  external_identifier_value:
+    name: external_identifier_value
+    description: This is the value of the identifier used in some external system
+    comments:
+    - Using a uriorcurie range ensures that we can consistently and atomically assert
+      the source of the mapping and the local identifier (without requiring even more
+      classes).
+    - Using a uriorcurie range does require that we define prefixes for all external
+      systems that we might map to. Prefixes from an external system like are strongly
+      preferred. Ideally the CURIes expand to a resolvable URL, but this is not required.
+    - '{''using curie as the range leads to "WARNING:root:UNKNOWN'': ''Curie // &lt;class
+      \''linkml_runtime.utils.yamlutils.extended_str\''&gt;" when building the project...
+      maybe from gen-owl?''}'
     from_schema: https://w3id.org/turbomam/reactions-for-owl
     rank: 1000
-    slot_uri: schema:identifier
-    identifier: true
-    alias: id
-    owner: NamedThing
+    alias: external_identifier_value
+    owner: QualifiedIdentifier
     domain_of:
-    - NamedThing
+    - QualifiedIdentifier
     range: uriorcurie
-    required: true
-  has_qualified_identifiers:
-    name: has_qualified_identifiers
-    description: A link from any (NamedTing?) in the NMDC database to an external
-      identifier This would replace alternative identifiers, related identifiers,
-      etc.
+  provenance:
+    name: provenance
+    description: comments about whether the mapping is 1:1 (from NMDC to the external
+      system), many:1, 1:many, or many:many. - would we ever assert a many:many mapping?
+      - use an enumeration and add some other comment-like string field?
     from_schema: https://w3id.org/turbomam/reactions-for-owl
     rank: 1000
-    multivalued: true
-    alias: has_qualified_identifiers
-    owner: NamedThing
+    alias: provenance
+    owner: QualifiedIdentifier
     domain_of:
-    - NamedThing
-    range: QualifiedIdentifier
-  name:
-    name: name
-    description: A human-readable name for a thing
-    from_schema: https://w3id.org/turbomam/reactions-for-owl
-    rank: 1000
-    slot_uri: schema:name
-    alias: name
-    owner: NamedThing
-    domain_of:
-    - NamedThing
+    - QualifiedIdentifier
     range: string
-  description:
-    name: description
-    description: A human-readable description for a thing
+  assertion_date:
+    name: assertion_date
+    description: A string representation of an ISO-8601 data when the mapping was
+      asserted.
+    comments:
+    - provide a pattern? see if date/time objects work in LinkML now?
     from_schema: https://w3id.org/turbomam/reactions-for-owl
     rank: 1000
-    slot_uri: schema:description
-    alias: description
-    owner: NamedThing
+    alias: assertion_date
+    owner: QualifiedIdentifier
     domain_of:
-    - NamedThing
+    - QualifiedIdentifier
     range: string
-class_uri: schema:Thing
+class_uri: linkml:QualifiedIdentifier
 
 </code></pre>
 </details>
