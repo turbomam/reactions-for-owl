@@ -1,0 +1,7 @@
+---
+name: reactions_for_owl
+author: Mark Andrew Miller <MAM@lbl.gov>
+description: Iterative, OWL-friendly model of proeolytic reactions
+source_schema_path: src/reactions_for_owl/schema/reactions_for_owl.yaml
+google_sheet_id: 1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ
+google_sheet_tabs: personinfo enums
