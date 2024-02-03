@@ -10,7 +10,6 @@ include = ["README.md", "src/reactions_for_owl/schema", "project"]
 [tool.poetry.dependencies]
 python = "^3.9"
 linkml-runtime = "^1.1.24"
-schema-automator = "^0.3.1"
 
 [tool.poetry-dynamic-versioning]
 enable = true

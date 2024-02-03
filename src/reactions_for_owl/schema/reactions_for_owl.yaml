@@ -1,5 +1,5 @@
 ---
-id: https://w3id.org/turbomam/reactions-for-owl
+id: https://w3id.org/turbomam/reactions-for-owl/reactions-for-owl
 name: reactions-for-owl
 title: reactions-for-owl
 description: |-
@@ -20,7 +20,4 @@ default_range: string
 
 imports:
   - linkml:types
-  - basic_slots
-  - core
-  - project
-  - qualified_identifier
+  - reactions

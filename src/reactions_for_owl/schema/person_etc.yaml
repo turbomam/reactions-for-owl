@@ -1,0 +1,77 @@
+---
+id: https://w3id.org/turbomam/reactions_for_owl/person_etc
+name: reactions-for-owl-person-etc
+title: Optional person modeling for the "reactions for owl" schema
+description: |-
+  Optional person module for a OWL-friendly model of proteolytic reactions
+license: MIT
+see_also:
+  - https://turbomam.github.io/reactions-for-owl
+
+prefixes:
+  reactions_for_owl: https://w3id.org/turbomam/reactions-for-owl/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/
+  schema: http://schema.org/
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  example: https://example.org/
+default_prefix: reactions_for_owl
+default_range: string
+
+imports:
+  - linkml:types
+  - core
+
+classes:
+  Person:
+    is_a: NamedThing
+    description: >-
+      Represents a Person
+    slots:
+      - primary_email
+      - birth_date
+      - age_in_years
+      - vital_status
+    slot_usage:
+      primary_email:
+        pattern: "^\\S+@[\\S+\\.]+\\S+"
+
+  PersonCollection:
+    tree_root: true
+    description: >-
+      A holder for Person objects
+    attributes:
+      entries:
+        range: Person
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+
+slots:
+  primary_email:
+    slot_uri: schema:email
+    description: The main email address of a person
+  birth_date:
+    slot_uri: schema:birthDate
+    range: date
+    description: Date on which a person is born
+  age_in_years:
+    range: integer
+    description: Number of years since birth
+  vital_status:
+    range: PersonStatus
+    description: living or dead status
+
+enums:
+  PersonStatus:
+    permissible_values:
+      ALIVE:
+        description: the person is living
+        meaning: PATO:0001421
+      DEAD:
+        description: the person is deceased
+        meaning: PATO:0001422
+      UNKNOWN:
+        description: the vital status is not known
+        todos:
+          - map this to an ontology

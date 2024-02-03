@@ -1,0 +1,122 @@
+---
+id: https://w3id.org/turbomam/reactions_for_owl/reactions
+name: proteolytic-reactions-owl-core
+title: proteolytic reactions owl core
+description: |-
+  Core nmdc-schema-like classes for an OWL-friendly model of proteolytic reactions
+license: MIT
+see_also:
+  - https://turbomam.github.io/reactions-for-owl
+
+prefixes:
+  reactions_for_owl: https://w3id.org/turbomam/reactions-for-owl/
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  example: https://example.org/
+default_prefix: reactions_for_owl
+default_range: string
+
+imports:
+  - linkml:types
+  - core
+
+classes:
+  MaterialProcessing:
+    is_a: PlannedProcess
+    slots:
+      - duration
+      - temperature
+    slot_usage:
+      has_inputs:
+        range: MaterialEntity
+      has_outputs:
+        #        any_of:
+        #          - range: Solution
+        #          - range: ProcessedSample
+        range: ProcessedSample
+
+  MaterialProcessingReaction:
+    is_a: MaterialProcessing
+    slots:
+      - catalyzing_solution
+      - reaction_category
+
+  Solution:
+    is_a: MaterialEntity
+    slots:
+      - volume
+    slot_usage:
+      has_parts:
+        range: ChemicalEntity
+
+  ChemicalEntity:
+    is_a: MaterialEntity
+    slots:
+      - smiles
+      - inchi
+      - inchi_key
+      - mass
+      - volume
+      - concentration
+      - enzyme_specification
+      - buffer_specification
+
+  Biosample:
+    is_a: MaterialEntity
+
+  ProcessedSample:
+    is_a: MaterialEntity
+
+slots:
+  catalyzing_solution:
+    range: Solution
+  duration:
+    range: QuantityValue
+  temperature:
+    range: QuantityValue
+  reaction_category:
+    range: ReactionCategoryEnum
+  smiles:
+    range: string
+  inchi:
+    range: string
+  inchi_key:
+    range: string
+  mass:
+    range: QuantityValue
+  volume:
+    range: QuantityValue
+  concentration:
+    range: QuantityValue
+  enzyme_specification:
+    range: EnzymeComponentEnum
+  buffer_specification:
+    range: BufferComponentEnum
+
+enums:
+  ReactionCategoryEnum:
+    permissible_values:
+      addition: { }
+      condensation: { }
+      depolymerization: { }
+      elimination: { }
+      hydrolysis: { }
+      isomerization: { }
+      other: { }
+      oxidation: { }
+      polymerization: { }
+      rearrangement: { }
+      reduction: { }
+      substitution: { }
+  EnzymeComponentEnum:
+    permissible_values:
+      chymotrypsin: { }
+      proteinase_k: { }
+      trypsin: { }
+  BufferComponentEnum:
+    permissible_values:
+      ammonium_bicarbonate: { }
+      hepes: { }
+      pbs: { }
+      tris: { }
+      water: { }
