@@ -8,3 +8,4 @@ has_qualified_identifiers:
   - external_identifier_value: example:Person001
     provenance: asserted
     assertion_date: "2021-01-01"
+    type: QualifiedIdentifier

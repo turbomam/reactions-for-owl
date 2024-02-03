@@ -1,8 +1,8 @@
 # Auto generated from reactions_for_owl.yaml by pythongen.py version: 0.0.1
-# Generation date: 2024-02-02T10:37:41
+# Generation date: 2024-02-02T19:19:34
 # Schema: reactions-for-owl
 #
-# id: https://w3id.org/turbomam/reactions-for-owl
+# id: https://w3id.org/turbomam/reactions-for-owl/reactions-for-owl
 # description: Iterative, OWL-friendly model of proteolytic reactions
 # license: MIT
 
@@ -21,8 +21,8 @@ from linkml_runtime.utils.formatutils import camelcase, underscore, sfx
 from linkml_runtime.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml_runtime.utils.curienamespace import CurieNamespace
-from linkml_runtime.linkml_model.types import Date, Integer, String, Uriorcurie
-from linkml_runtime.utils.metamodelcore import URIorCURIE, XSDDate
+from linkml_runtime.linkml_model.types import String, Uriorcurie
+from linkml_runtime.utils.metamodelcore import URIorCURIE
 
 metamodel_version = "1.7.0"
 version = None
@@ -47,7 +47,27 @@ class NamedThingId(URIorCURIE):
     pass
 
 
-class PersonId(NamedThingId):
+class PlannedProcessId(NamedThingId):
+    pass
+
+
+class MaterialProcessingId(PlannedProcessId):
+    pass
+
+
+class MaterialProcessingReactionId(MaterialProcessingId):
+    pass
+
+
+class MaterialEntityId(NamedThingId):
+    pass
+
+
+class SolutionId(MaterialEntityId):
+    pass
+
+
+class ChemicalEntityId(MaterialEntityId):
     pass
 
 
@@ -64,7 +84,6 @@ class NamedThing(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL.NamedThing
 
     id: Union[str, NamedThingId] = None
-    has_qualified_identifiers: Optional[Union[Union[dict, "QualifiedIdentifier"], List[Union[dict, "QualifiedIdentifier"]]]] = empty_list()
     name: Optional[str] = None
     description: Optional[str] = None
 
@@ -73,10 +92,6 @@ class NamedThing(YAMLRoot):
             self.MissingRequiredField("id")
         if not isinstance(self.id, NamedThingId):
             self.id = NamedThingId(self.id)
-
-        if not isinstance(self.has_qualified_identifiers, list):
-            self.has_qualified_identifiers = [self.has_qualified_identifiers] if self.has_qualified_identifiers is not None else []
-        self.has_qualified_identifiers = [v if isinstance(v, QualifiedIdentifier) else QualifiedIdentifier(**as_dict(v)) for v in self.has_qualified_identifiers]
 
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
@@ -88,116 +103,166 @@ class NamedThing(YAMLRoot):
 
 
 @dataclass
-class Person(NamedThing):
+class PlannedProcess(NamedThing):
     """
-    Represents a Person
+    A planned process
     """
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL["Person"]
-    class_class_curie: ClassVar[str] = "reactions_for_owl:Person"
-    class_name: ClassVar[str] = "Person"
-    class_model_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL.Person
+    class_class_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL["PlannedProcess"]
+    class_class_curie: ClassVar[str] = "reactions_for_owl:PlannedProcess"
+    class_name: ClassVar[str] = "PlannedProcess"
+    class_model_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL.PlannedProcess
 
-    id: Union[str, PersonId] = None
-    primary_email: Optional[str] = None
-    birth_date: Optional[Union[str, XSDDate]] = None
-    age_in_years: Optional[int] = None
-    vital_status: Optional[Union[str, "PersonStatus"]] = None
+    id: Union[str, PlannedProcessId] = None
+    has_inputs: Optional[Union[str, List[str]]] = empty_list()
+    has_outputs: Optional[Union[str, List[str]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, PersonId):
-            self.id = PersonId(self.id)
+        if not isinstance(self.id, PlannedProcessId):
+            self.id = PlannedProcessId(self.id)
 
-        if self.primary_email is not None and not isinstance(self.primary_email, str):
-            self.primary_email = str(self.primary_email)
+        if not isinstance(self.has_inputs, list):
+            self.has_inputs = [self.has_inputs] if self.has_inputs is not None else []
+        self.has_inputs = [v if isinstance(v, str) else str(v) for v in self.has_inputs]
 
-        if self.birth_date is not None and not isinstance(self.birth_date, XSDDate):
-            self.birth_date = XSDDate(self.birth_date)
-
-        if self.age_in_years is not None and not isinstance(self.age_in_years, int):
-            self.age_in_years = int(self.age_in_years)
-
-        if self.vital_status is not None and not isinstance(self.vital_status, PersonStatus):
-            self.vital_status = PersonStatus(self.vital_status)
+        if not isinstance(self.has_outputs, list):
+            self.has_outputs = [self.has_outputs] if self.has_outputs is not None else []
+        self.has_outputs = [v if isinstance(v, str) else str(v) for v in self.has_outputs]
 
         super().__post_init__(**kwargs)
 
 
 @dataclass
-class PersonCollection(YAMLRoot):
-    """
-    A holder for Person objects
-    """
+class MaterialProcessing(PlannedProcess):
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL["PersonCollection"]
-    class_class_curie: ClassVar[str] = "reactions_for_owl:PersonCollection"
-    class_name: ClassVar[str] = "PersonCollection"
-    class_model_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL.PersonCollection
+    class_class_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL["MaterialProcessing"]
+    class_class_curie: ClassVar[str] = "reactions_for_owl:MaterialProcessing"
+    class_name: ClassVar[str] = "MaterialProcessing"
+    class_model_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL.MaterialProcessing
 
-    entries: Optional[Union[Dict[Union[str, PersonId], Union[dict, Person]], List[Union[dict, Person]]]] = empty_dict()
+    id: Union[str, MaterialProcessingId] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        self._normalize_inlined_as_list(slot_name="entries", slot_type=Person, key_name="id", keyed=True)
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, MaterialProcessingId):
+            self.id = MaterialProcessingId(self.id)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass
-class QualifiedIdentifier(YAMLRoot):
-    """
-    A non-NMDC identifier for something that is also present in the NMDC database. Provides support for saying when
-    the identifier was asserted and assessments about the quality of the identifier.
-    """
+class MaterialProcessingReaction(MaterialProcessing):
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = LINKML["QualifiedIdentifier"]
-    class_class_curie: ClassVar[str] = "linkml:QualifiedIdentifier"
-    class_name: ClassVar[str] = "QualifiedIdentifier"
-    class_model_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL.QualifiedIdentifier
+    class_class_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL["MaterialProcessingReaction"]
+    class_class_curie: ClassVar[str] = "reactions_for_owl:MaterialProcessingReaction"
+    class_name: ClassVar[str] = "MaterialProcessingReaction"
+    class_model_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL.MaterialProcessingReaction
 
-    external_identifier_value: Optional[Union[str, URIorCURIE]] = None
-    provenance: Optional[str] = None
-    assertion_date: Optional[str] = None
+    id: Union[str, MaterialProcessingReactionId] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.external_identifier_value is not None and not isinstance(self.external_identifier_value, URIorCURIE):
-            self.external_identifier_value = URIorCURIE(self.external_identifier_value)
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, MaterialProcessingReactionId):
+            self.id = MaterialProcessingReactionId(self.id)
 
-        if self.provenance is not None and not isinstance(self.provenance, str):
-            self.provenance = str(self.provenance)
+        super().__post_init__(**kwargs)
 
-        if self.assertion_date is not None and not isinstance(self.assertion_date, str):
-            self.assertion_date = str(self.assertion_date)
+
+@dataclass
+class MaterialEntity(NamedThing):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL["MaterialEntity"]
+    class_class_curie: ClassVar[str] = "reactions_for_owl:MaterialEntity"
+    class_name: ClassVar[str] = "MaterialEntity"
+    class_model_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL.MaterialEntity
+
+    id: Union[str, MaterialEntityId] = None
+    has_parts: Optional[Union[str, List[str]]] = empty_list()
+    part_of: Optional[Union[str, List[str]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, MaterialEntityId):
+            self.id = MaterialEntityId(self.id)
+
+        if not isinstance(self.has_parts, list):
+            self.has_parts = [self.has_parts] if self.has_parts is not None else []
+        self.has_parts = [v if isinstance(v, str) else str(v) for v in self.has_parts]
+
+        if not isinstance(self.part_of, list):
+            self.part_of = [self.part_of] if self.part_of is not None else []
+        self.part_of = [v if isinstance(v, str) else str(v) for v in self.part_of]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class Solution(MaterialEntity):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL["Solution"]
+    class_class_curie: ClassVar[str] = "reactions_for_owl:Solution"
+    class_name: ClassVar[str] = "Solution"
+    class_model_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL.Solution
+
+    id: Union[str, SolutionId] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, SolutionId):
+            self.id = SolutionId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class ChemicalEntity(MaterialEntity):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL["ChemicalEntity"]
+    class_class_curie: ClassVar[str] = "reactions_for_owl:ChemicalEntity"
+    class_name: ClassVar[str] = "ChemicalEntity"
+    class_model_uri: ClassVar[URIRef] = REACTIONS_FOR_OWL.ChemicalEntity
+
+    id: Union[str, ChemicalEntityId] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, ChemicalEntityId):
+            self.id = ChemicalEntityId(self.id)
 
         super().__post_init__(**kwargs)
 
 
 # Enumerations
-class PersonStatus(EnumDefinitionImpl):
 
-    ALIVE = PermissibleValue(
-        text="ALIVE",
-        description="the person is living",
-        meaning=PATO["0001421"])
-    DEAD = PermissibleValue(
-        text="DEAD",
-        description="the person is deceased",
-        meaning=PATO["0001422"])
-    UNKNOWN = PermissibleValue(
-        text="UNKNOWN",
-        description="the vital status is not known")
-
-    _defn = EnumDefinition(
-        name="PersonStatus",
-    )
 
 # Slots
 class slots:
     pass
+
+slots.has_inputs = Slot(uri=REACTIONS_FOR_OWL.has_inputs, name="has_inputs", curie=REACTIONS_FOR_OWL.curie('has_inputs'),
+                   model_uri=REACTIONS_FOR_OWL.has_inputs, domain=None, range=Optional[Union[str, List[str]]])
+
+slots.has_outputs = Slot(uri=REACTIONS_FOR_OWL.has_outputs, name="has_outputs", curie=REACTIONS_FOR_OWL.curie('has_outputs'),
+                   model_uri=REACTIONS_FOR_OWL.has_outputs, domain=None, range=Optional[Union[str, List[str]]])
+
+slots.has_parts = Slot(uri=REACTIONS_FOR_OWL.has_parts, name="has_parts", curie=REACTIONS_FOR_OWL.curie('has_parts'),
+                   model_uri=REACTIONS_FOR_OWL.has_parts, domain=None, range=Optional[Union[str, List[str]]])
+
+slots.part_of = Slot(uri=REACTIONS_FOR_OWL.part_of, name="part_of", curie=REACTIONS_FOR_OWL.curie('part_of'),
+                   model_uri=REACTIONS_FOR_OWL.part_of, domain=None, range=Optional[Union[str, List[str]]])
 
 slots.id = Slot(uri=SCHEMA.identifier, name="id", curie=SCHEMA.curie('identifier'),
                    model_uri=REACTIONS_FOR_OWL.id, domain=None, range=URIRef)
@@ -207,34 +272,3 @@ slots.name = Slot(uri=SCHEMA.name, name="name", curie=SCHEMA.curie('name'),
 
 slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEMA.curie('description'),
                    model_uri=REACTIONS_FOR_OWL.description, domain=None, range=Optional[str])
-
-slots.primary_email = Slot(uri=SCHEMA.email, name="primary_email", curie=SCHEMA.curie('email'),
-                   model_uri=REACTIONS_FOR_OWL.primary_email, domain=None, range=Optional[str])
-
-slots.birth_date = Slot(uri=SCHEMA.birthDate, name="birth_date", curie=SCHEMA.curie('birthDate'),
-                   model_uri=REACTIONS_FOR_OWL.birth_date, domain=None, range=Optional[Union[str, XSDDate]])
-
-slots.age_in_years = Slot(uri=REACTIONS_FOR_OWL.age_in_years, name="age_in_years", curie=REACTIONS_FOR_OWL.curie('age_in_years'),
-                   model_uri=REACTIONS_FOR_OWL.age_in_years, domain=None, range=Optional[int])
-
-slots.vital_status = Slot(uri=REACTIONS_FOR_OWL.vital_status, name="vital_status", curie=REACTIONS_FOR_OWL.curie('vital_status'),
-                   model_uri=REACTIONS_FOR_OWL.vital_status, domain=None, range=Optional[Union[str, "PersonStatus"]])
-
-slots.external_identifier_value = Slot(uri=REACTIONS_FOR_OWL.external_identifier_value, name="external_identifier_value", curie=REACTIONS_FOR_OWL.curie('external_identifier_value'),
-                   model_uri=REACTIONS_FOR_OWL.external_identifier_value, domain=None, range=Optional[Union[str, URIorCURIE]])
-
-slots.provenance = Slot(uri=REACTIONS_FOR_OWL.provenance, name="provenance", curie=REACTIONS_FOR_OWL.curie('provenance'),
-                   model_uri=REACTIONS_FOR_OWL.provenance, domain=None, range=Optional[str])
-
-slots.assertion_date = Slot(uri=REACTIONS_FOR_OWL.assertion_date, name="assertion_date", curie=REACTIONS_FOR_OWL.curie('assertion_date'),
-                   model_uri=REACTIONS_FOR_OWL.assertion_date, domain=None, range=Optional[str])
-
-slots.has_qualified_identifiers = Slot(uri=REACTIONS_FOR_OWL.has_qualified_identifiers, name="has_qualified_identifiers", curie=REACTIONS_FOR_OWL.curie('has_qualified_identifiers'),
-                   model_uri=REACTIONS_FOR_OWL.has_qualified_identifiers, domain=None, range=Optional[Union[Union[dict, QualifiedIdentifier], List[Union[dict, QualifiedIdentifier]]]])
-
-slots.personCollection__entries = Slot(uri=REACTIONS_FOR_OWL.entries, name="personCollection__entries", curie=REACTIONS_FOR_OWL.curie('entries'),
-                   model_uri=REACTIONS_FOR_OWL.personCollection__entries, domain=None, range=Optional[Union[Dict[Union[str, PersonId], Union[dict, Person]], List[Union[dict, Person]]]])
-
-slots.Person_primary_email = Slot(uri=SCHEMA.email, name="Person_primary_email", curie=SCHEMA.curie('email'),
-                   model_uri=REACTIONS_FOR_OWL.Person_primary_email, domain=Person, range=Optional[str],
-                   pattern=re.compile(r'^\S+@[\S+\.]+\S+'))

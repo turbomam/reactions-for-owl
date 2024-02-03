@@ -1,5 +1,5 @@
 ---
-id: https://w3id.org/turbomam/core
+id: https://w3id.org/turbomam/reactions_for_owl/core
 name: proteolytic-reactions-owl-core
 title: proteolytic reactions owl core
 description: |-
@@ -19,7 +19,6 @@ default_range: string
 imports:
   - linkml:types
   - basic_slots
-  - qualified_identifier
 
 classes:
 
@@ -28,36 +27,41 @@ classes:
       A generic grouping for any identifiable entity
     slots:
       - id
-      - has_qualified_identifiers
+      #      - has_qualified_identifiers
       - name
       - description
     class_uri: schema:Thing
 
-  Person:
+  PlannedProcess:
     is_a: NamedThing
     description: >-
-      Represents a Person
+      A planned process
     slots:
-      - primary_email
-      - birth_date
-      - age_in_years
-      - vital_status
-    slot_usage:
-      primary_email:
-        pattern: "^\\S+@[\\S+\\.]+\\S+"
+      - has_inputs
+      - has_outputs
 
-slots:
-  primary_email:
-    slot_uri: schema:email
-    description: The main email address of a person
-  birth_date:
-    slot_uri: schema:birthDate
-    range: date
-    description: Date on which a person is born
-  age_in_years:
-    range: integer
-    description: Number of years since birth
-  vital_status:
-    range: PersonStatus
-    description: living or dead status
+  MaterialEntity:
+    is_a: NamedThing
+    slots:
+      - has_parts
+      - part_of
 
+  QuantityValue:
+    slots:
+      - has_value
+      - has_unit
+
+
+slots: # seems like we should have separate slots for NamedThing and inlined-only class inputs/outputs
+  has_inputs:
+    multivalued: true
+  has_outputs:
+    multivalued: true
+  has_parts:
+    multivalued: true
+  part_of:
+    multivalued: true
+  has_value:
+    range: float
+  has_unit:
+    range: string
